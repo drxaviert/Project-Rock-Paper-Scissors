@@ -1,4 +1,4 @@
-// Get computer choice
+// ***Get computer choice
 function getComputerChoice() {
   let randNo = Math.floor(Math.random() * 3);
   let computerChoice;
@@ -16,28 +16,57 @@ function getComputerChoice() {
 
 // console.log(getComputerChoice());
 
-// Get human choice
+// ***Get human choice
 function getHumanChoice() {
-  return prompt("What's your answer?");
+  let humanChoice = prompt("What's your answer?");
+
+  // Make humanChoice case insensitive
+  humanChoice =
+    humanChoice.at(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
+  return humanChoice;
 }
 
 // console.log(getHumanChoice());
 
-// Set initial score
+// ***Set initial score
 
 let humanScore, computerScore;
 
 humanScore = 0;
 computerScore = 0;
 
-// Game's logic
+// ***Game's logic
 
-function playRound(getHumanChoice, getComputerChoice) {
-  let humanChoice =
-    getHumanChoice().at(0).toUpperCase() +
-    getHumanChoice().slice(1).toLowerCase();
+const winMessage = "You win!";
+const loseMessage = "You lose!";
+const drawMessage = "It's a draw!";
 
-  return hunanChoice + "12";
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice == computerChoice) {
+    return drawMessage;
+  } else if (humanChoice === "Rock" && computerChoice === "Scissor") {
+    return winMessage;
+  } else if (humanChoice === "Paper" && computerChoice === "Rock") {
+    return winMessage;
+  } else if (humanChoice === "Scissor" && computerChoice === "Paper") {
+    return winMessage;
+  } else {
+    return loseMessage;
+  }
 }
 
-console.log(playRound(getHumanChoice));
+let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
+let playOneRound = playRound(humanSelection, computerSelection);
+
+if (playOneRound === winMessage) {
+  humanScore++;
+} else if (playOneRound === loseMessage) {
+  computerScore++;
+}
+
+console.log(`You: ${humanSelection}`);
+console.log(`Computer: ${computerSelection}`);
+
+console.log(`Result: ${playOneRound}`);
+console.log(`Score: You - ${humanScore} | Computer - ${computerScore}`);
