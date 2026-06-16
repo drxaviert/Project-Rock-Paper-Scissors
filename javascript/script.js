@@ -16,22 +16,34 @@ function getComputerChoice() {
   }
 }
 
+let message;
+let playerScore = 0;
+let computerScore = 0;
+
 function playRound(playerChoice, computerChoice) {
   const a = playerChoice;
   const b = computerChoice();
 
   if (a === b) {
-    return "It's a draw!";
+    return (message = "It's a draw!");
   } else if (
     (a === "Rock" && b === "Scissor") ||
     (a === "Scissor" && b === "Paper") ||
     (a === "Paper" && b === "Rock")
   ) {
-    return "Player wins!";
     playerScore++;
+    return (message = "Player wins!");
   } else {
-    return "Computer wins!";
     computerScore++;
+    return (message = "Computer wins!");
+  }
+}
+
+function playGame(numMatch) {
+  for (let i = 0; i < numMatch; i++) {
+    let message = playRound(getPlayerChoice(), getComputerChoice);
+    console.log(message);
+    console.log(`${playerScore} || ${computerScore}`);
   }
 }
 
@@ -42,10 +54,17 @@ btnRock.addEventListener("click", (event) => {
   let playerChoice = "Rock";
   let resultFromGame = playRound(playerChoice, getComputerChoice);
   console.log(resultFromGame);
+  console.log(`${playerScore} | ${computerScore}`);
 
   const result = document.createElement("div");
   result.textContent = resultFromGame;
   resultContainer.appendChild(result);
+
+  if (playerScore === 5) {
+    console.log("We've got a winner! It's the player");
+  } else if (computerScore === 5) {
+    console.log("We've got a winner! It's the computer");
+  }
 });
 
 const btnPaper = document.querySelector("#btnPaper");
@@ -57,6 +76,12 @@ btnPaper.addEventListener("click", (event) => {
   const result = document.createElement("div");
   result.textContent = resultFromGame;
   resultContainer.appendChild(result);
+
+  if (playerScore === 5) {
+    console.log("We've got a winner! It's the player");
+  } else if (computerScore === 5) {
+    console.log("We've got a winner! It's the computer");
+  }
 });
 
 const btnScissor = document.querySelector("#btnScissor");
@@ -68,13 +93,10 @@ btnScissor.addEventListener("click", (event) => {
   const result = document.createElement("div");
   result.textContent = resultFromGame;
   resultContainer.appendChild(result);
+
+  if (playerScore === 5) {
+    console.log("We've got a winner! It's the player");
+  } else if (computerScore === 5) {
+    console.log("We've got a winner! It's the computer");
+  }
 });
-
-// let playerScore = 0;
-// let computerScore = 0;
-
-// if (playerScore === 5) {
-//   console.log("We've got a winner! It's the player");
-// } else if (computerScore === 5) {
-//   console.log("We've got a winner! It's the computer");
-// }
