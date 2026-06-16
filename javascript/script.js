@@ -47,56 +47,73 @@ function playGame(numMatch) {
   }
 }
 
+function scoreTracker(playerScore, computerScore) {
+  const score = document.createElement("div");
+  const winner = document.createElement("div");
+
+  if (playerScore === 5) {
+    console.log(`Score || player: ${playerScore} | computer: ${computerScore}`);
+    console.log("We've got a winner! It's the player");
+
+    score.textContent = `Score || player: ${playerScore} | computer: ${computerScore}`;
+    resultContainer.appendChild(score);
+
+    winner.textContent = "We've got a winner! It's the player";
+    resultContainer.appendChild(winner);
+  } else if (computerScore === 5) {
+    console.log(`Score || player: ${playerScore} | computer: ${computerScore}`);
+    console.log("We've got a winner! It's the computer");
+
+    score.textContent = `Score || player: ${playerScore} | computer: ${computerScore}`;
+    resultContainer.appendChild(score);
+
+    winner.textContent = "We've got a winner! It's the computer";
+    resultContainer.appendChild(winner);
+  } else {
+    console.log(`Score || player: ${playerScore} | computer: ${computerScore}`);
+
+    score.textContent = `Score || player: ${playerScore} | computer: ${computerScore}`;
+    resultContainer.appendChild(score);
+  }
+}
+
 const resultContainer = document.querySelector("#resultContainer");
 
 const btnRock = document.querySelector("#btnRock");
 btnRock.addEventListener("click", (event) => {
   let playerChoice = "Rock";
   let resultFromGame = playRound(playerChoice, getComputerChoice);
+
+  scoreTracker(playerScore, computerScore);
   console.log(resultFromGame);
-  console.log(`${playerScore} | ${computerScore}`);
 
   const result = document.createElement("div");
   result.textContent = resultFromGame;
   resultContainer.appendChild(result);
-
-  if (playerScore === 5) {
-    console.log("We've got a winner! It's the player");
-  } else if (computerScore === 5) {
-    console.log("We've got a winner! It's the computer");
-  }
 });
 
 const btnPaper = document.querySelector("#btnPaper");
 btnPaper.addEventListener("click", (event) => {
   let playerChoice = "Paper";
   let resultFromGame = playRound(playerChoice, getComputerChoice);
+
+  scoreTracker(playerScore, computerScore);
   console.log(resultFromGame);
 
   const result = document.createElement("div");
   result.textContent = resultFromGame;
   resultContainer.appendChild(result);
-
-  if (playerScore === 5) {
-    console.log("We've got a winner! It's the player");
-  } else if (computerScore === 5) {
-    console.log("We've got a winner! It's the computer");
-  }
 });
 
 const btnScissor = document.querySelector("#btnScissor");
 btnScissor.addEventListener("click", (event) => {
   let playerChoice = "Scissor";
   let resultFromGame = playRound(playerChoice, getComputerChoice);
+
+  scoreTracker(playerScore, computerScore);
   console.log(resultFromGame);
 
   const result = document.createElement("div");
   result.textContent = resultFromGame;
   resultContainer.appendChild(result);
-
-  if (playerScore === 5) {
-    console.log("We've got a winner! It's the player");
-  } else if (computerScore === 5) {
-    console.log("We've got a winner! It's the computer");
-  }
 });
